@@ -33,42 +33,56 @@ function requireSignIn(req, res, next) {
 }
 
 function configureRoutes(app) {
-  app.all('*', /*#__PURE__*/function () {
+  app.all("*", /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res, next) {
+      var session, MemoryStore;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               app.locals.signedIn = isSignedIn(req);
+              session = require("express-session");
+              MemoryStore = require("memorystore")(session);
+              app.use(session({
+                cookie: {
+                  maxAge: 86400000
+                },
+                store: new MemoryStore({
+                  checkPeriod: 86400000 // prune expired entries every 24h
+
+                }),
+                resave: false,
+                secret: "keyboard cat"
+              }));
 
               if (!isSignedIn(req)) {
-                _context.next = 7;
+                _context.next = 10;
                 break;
               }
 
               if (req.session.user_profile) {
-                _context.next = 6;
+                _context.next = 9;
                 break;
               }
 
-              _context.next = 5;
+              _context.next = 8;
               return Profile.findOne({
                 user: req.user
               }).exec();
 
-            case 5:
+            case 8:
               req.session.user_profile = _context.sent;
 
-            case 6:
+            case 9:
               //You can only use await if you also include async in the call
               //This displays the name of the person signed in
               app.locals.displayName = req.session.user_profile.displayName;
 
-            case 7:
+            case 10:
               res.cookie("authenticated", app.locals.signedIn);
               next();
 
-            case 9:
+            case 12:
             case "end":
               return _context.stop();
           }
@@ -81,25 +95,25 @@ function configureRoutes(app) {
     };
   }());
   /*****************************************************************************
-  * Section 1-2: Rendered pages & API
-  ****************************************************************************/
+   * Section 1-2: Rendered pages & API
+   ****************************************************************************/
 
-  router.get('', function (req, res) {
-    return res.redirect(301, '/meals');
+  router.get("", function (req, res) {
+    return res.redirect(301, "/meals");
   });
-  router.get('/', _index.indexPage);
-  router.get('/meals*', _index.indexPage);
-  router.get('/api/meals', _index.allMealsAPI, requireSignIn);
-  router.post('/api/meals/new', _index.createMeal, requireSignIn);
-  router.put('/api/meals/:id/edit', _index.editMeal, requireSignIn);
-  router["delete"]('/api/meals/:id', _index.deleteMeal, requireSignIn); // Users
+  router.get("/", _index.indexPage);
+  router.get("/meals*", _index.indexPage);
+  router.get("/api/meals", _index.allMealsAPI, requireSignIn);
+  router.post("/api/meals/new", _index.createMeal, requireSignIn);
+  router.put("/api/meals/:id/edit", _index.editMeal, requireSignIn);
+  router["delete"]("/api/meals/:id", _index.deleteMeal, requireSignIn); // Users
 
-  router.post('/api/users/signup', _users.signUserUpAPI);
-  router.post('/api/users/signin', _users.signUserInAPI);
-  router["delete"]('/api/users/signout', _users.signUserOutAPI);
-  router.get('/api/users/profile', requireSignIn, _users.currentUserProfileAPI);
-  router.get('/signin', _users.signInPage);
-  router.get('/signup', _users.signUpPage);
-  router.get('/profile', _users.profilePage);
-  app.use('/', router);
+  router.post("/api/users/signup", _users.signUserUpAPI);
+  router.post("/api/users/signin", _users.signUserInAPI);
+  router["delete"]("/api/users/signout", _users.signUserOutAPI);
+  router.get("/api/users/profile", requireSignIn, _users.currentUserProfileAPI);
+  router.get("/signin", _users.signInPage);
+  router.get("/signup", _users.signUpPage);
+  router.get("/profile", _users.profilePage);
+  app.use("/", router);
 }

@@ -18,7 +18,7 @@ export const meals = [
     {
         "mealTitle": "J.J.B.L.T",
         "restaurant": "Jimmy John's",
-        "dateAdded": 'ISODate("2022-04-20T06:00:00.000Z")',
+        "dateAdded": "2022-04-20T06:00:00.000Z",
         "description": "This is a really good sandwich that I would get over and over again. There is something about the sauce that just makes it taste really good.",
         "picture": "https://www.jimmyjohns.com/images/menu/Items/jj_blt.jpg",
         "rating": 3
