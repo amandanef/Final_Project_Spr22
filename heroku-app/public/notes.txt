@@ -1,0 +1,17 @@
+Change the server.js file to reflect he static public folder changes we made while meeting with professor.
+Otherwise there will be an error when deploying to heroku
+
+
+
+
+Notes of what to take care of next
+
+- Picture and Date fix
+- Rating system for icons
+- Sign In / Sign Out
+
+- Heroku
+
+IF have time
+- view
+- edit page
