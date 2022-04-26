@@ -15,6 +15,16 @@
     padding: 0 !important;
     margin: 0 !important;
 }
+.descriptionBox {
+  height: 200px;
+}
+.iconBox {
+  width: 100%;
+  height: auto;
+  padding-bottom: 10%;
+  background-color: rgb(192, 192, 192);
+  padding: 10%;
+}
 
 @media only screen and (min-width: 540px) {
     .myCard{

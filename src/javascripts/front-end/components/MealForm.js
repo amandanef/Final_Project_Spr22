@@ -163,7 +163,7 @@ export default function MealForm() {
                   name="description"
                   value={values.description}
                   onChange={handleChange}
-                  className="w-100 h-100"
+                  className="w-100 h-100 descriptionBox"
                 />
                 <VHelp message={errors.description} />
               </div>

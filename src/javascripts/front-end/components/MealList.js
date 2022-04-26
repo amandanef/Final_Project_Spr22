@@ -18,6 +18,22 @@ export function MealList(props) {
   );
   const history = useHistory();
 
+  let sortingField = "";
+  const sortBy = (field) => {
+    if (field === "dateAdded") {
+      // Date descendingly
+      meals.sort((a, b) => b[field].toISOString().localeCompare(a[field].toISOString()))
+      console.log("Sorting by date...");
+    } else if (field === "rating") {
+      // Number
+      meals.sort((a, b) => b[field] - a[field]);
+    } else if (field === "mealTitle" || field === "restaurant") {
+      // String
+      meals.sort((a, b) => a[field].localeCompare(b[field]));
+    }
+    setMeals([...meals]);
+  };
+
   useEffect(() => {
     fetch("/api/meals", {
       credentials: "same-origin",
@@ -38,15 +54,30 @@ export function MealList(props) {
         <div className="p-5">
           <div className="pull-content-right mb-3">
             <Route exact path="/meals">
-              <h2 className="text-center mb-3">All Meals</h2>
-              <button
-                className="btn btn-danger bg-danger"
-                onClick={() => {
-                  document.location = "/meals/new";
-                }}
-              >
-                Add a new meal
-              </button>
+            <h2 className="text-center mb-3">All Meals</h2>
+              <div className="row">
+                <div className="col-6">
+                  <button
+                    className="btn btn-danger bg-danger"
+                    onClick={() => {
+                      document.location = "/meals/new";
+                    }}
+                  >
+                    Add a new meal
+                  </button>
+                </div>
+                <div className="col-6">
+                  <select
+                    className="form-select w-50 float-end"
+                    onChange={(e) => sortBy(e.target.value)}
+                  >
+                    <option defaultValue="">Sort by:</option>
+                    <option value="mealTitle">Meal Title</option>
+                    <option value="dateAdded">Date Added</option>
+                    <option value="rating">Rating</option>
+                  </select>
+                </div>
+              </div>
             </Route>
           </div>
           <main className="w-100">

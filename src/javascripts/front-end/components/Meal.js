@@ -7,6 +7,7 @@ import {
   FaRegMeh,
   FaRegFrown,
   FaPencilAlt,
+  FaUtensils
 } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import Modal from "react-modal";
@@ -73,6 +74,19 @@ export default function Meal(props, i) {
     let formattedDate = moment(date).utc().format("MM-DD-YYYY");
     return formattedDate;
   };
+  const checkPicture = (picture) => {
+    if (picture === ""){
+      return(
+        <div className="iconBox">
+          <FaUtensils size={40} color="grey"/>
+      </div>
+        )
+    }
+    else {
+      return <img src={picture} alt={m.mealTitle} className="w-100" />
+
+    }
+  }
 
   return (
     <>
@@ -82,7 +96,7 @@ export default function Meal(props, i) {
             <div className="col-lg-2 col-sm-12 text-center align-items-center">
               <div className="row">
                 <div className="text-center w-100 mb-3">
-                  <img src={m.picture} alt={m.mealTitle} className="w-100" />
+                    {checkPicture(m.picture)}
                 </div>
               </div>
               <div className="row mb-3">
@@ -106,7 +120,7 @@ export default function Meal(props, i) {
                   <h6 className="card-subtitle mb-2 text-danger">
                     {m.restaurant}
                   </h6>
-                  <p className="text-muted">{getDate(m.rating)}</p>
+                  <p className="text-muted">{getDate(m.dateAdded)}</p>
                 </div>
                 <div className="col-4 ">
                   <div className="w-100 float-right">{ratingIcon()}</div>

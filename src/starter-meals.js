@@ -25,7 +25,3 @@ export const meals = [
     },
     
 ]
-
-
-
-//https://media-cdn.tripadvisor.com/media/photo-s/0e/46/25/eb/b-bop-and-a-mandoo.jpg
