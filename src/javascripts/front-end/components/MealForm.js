@@ -45,23 +45,22 @@ export default function MealForm() {
   let { mid } = useParams();
   let [modalOpen, setModalOpen] = useState(false);
 
-  let meal = mid ? meals.find((m) => m.id == mid) : {};
+  let meal = mid ? meals.find(m => m.id == mid) : {};
   let is_new = mid === undefined;
   let { handleSubmit, handleChange, values, errors, setFieldValue } = useFormik(
     {
-      initialValues: {
+      initialValues: is_new ? {
         mealTitle: "",
         restaurant: "",
-        dateAdded: "",
-        //Change so this starts with today's date
+        dateAdded: new Date(),
         description: "",
         picture: "",
         rating: 0,
-      },
+      } : {...meal},
       validationSchema,
       onSubmit(values) {
-        fetch("/api/meals/new", {
-          method: "POST",
+        fetch(`/api/meals${is_new ? '/new' : '/' + meal.id}`, {
+          method: is_new ? "POST" : "PUT",
           headers: {
             "Content-Type": "application/json",
           },

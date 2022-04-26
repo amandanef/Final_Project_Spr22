@@ -22,7 +22,8 @@ export function MealList(props) {
   const sortBy = (field) => {
     if (field === "dateAdded") {
       // Date descendingly
-      meals.sort((a, b) => b[field].toISOString().localeCompare(a[field].toISOString()))
+      // meals.sort((a, b) => b[field].toISOString().localeCompare(a[field].toISOString()))
+      meals.sort((a, b) => a.dateAdded - b.dateAdded)
       console.log("Sorting by date...");
     } else if (field === "rating") {
       // Number

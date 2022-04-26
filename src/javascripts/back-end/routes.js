@@ -64,7 +64,7 @@ export function configureRoutes(app) {
   /*****************************************************************************
    * Section 1-2: Rendered pages & API
    ****************************************************************************/
-  router.get("", (req, res) => res.redirect(301, "/meals"));
+  router.get("", (req, res) => res.redirect(301, "/meals/home"));
   router.get("/", indexPage);
   router.get("/meals*", indexPage);
 
