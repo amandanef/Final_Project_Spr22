@@ -1,5 +1,5 @@
 { 
-    "name": "my-usual", 
+    "name": "my-usual-web4890", 
     "description": "A MERN app deployed to heroku", 
     "scripts": { 
       "start": "node server.js" 
