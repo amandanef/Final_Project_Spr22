@@ -5,17 +5,11 @@ import { useHistory } from "react-router-dom";
 import MealForm from "./MealForm";
 import Home from "./Home";
 import { useCookies } from "react-cookie";
-import SignUpForm from "./SignUpForm";
-import SignInForm from "./SignInForm";
-import { Profile } from "./Profile";
 
 export const MealContext = createContext();
 export function MealList(props) {
   const [meals, setMeals] = useState();
-  const [cookies, setCookie, removeCookie] = useCookies(["authenticated"]);
-  let [authenticated, setAuthenticated] = useState(
-    cookies.authenticated === "true"
-  );
+
   const history = useHistory();
 
   let sortingField = "";
@@ -102,13 +96,6 @@ export function MealList(props) {
               </Route>
               <Route path="/meals/home">
                 <Home />
-              </Route>
-              <Route exact path="/signup" element={<SignUpForm />} />
-              <Route path="/signin">
-                <SignInForm />
-              </Route>
-              <Route path="/profile">
-                <Profile />
               </Route>
             </Switch>
           </main>

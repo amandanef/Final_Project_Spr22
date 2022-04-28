@@ -34,21 +34,6 @@ export function Navbar() {
                 </a>
               </li>
             </ul>
-            <ul className="navbar-nav mb-2 mb-lg-0" id="authul">
-              <li className="nav-item mx-3">
-                <hr className="text-white w-50" />
-              </li>
-              <li className="nav-item mx-3">
-                <a className="nav-link" href="/signin">
-                  Sign in{" "}
-                </a>
-              </li>
-              <li className="nav-item mx-3">
-                <a className="nav-link" href="/meals/signup">
-                  Sign up
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
       </nav>

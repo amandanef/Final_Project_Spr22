@@ -35,14 +35,3 @@ if(document.getElementById('main')){
     ReactDOM.render(<Footer/>, document.querySelector('#footer'))
   }
 
-import SignInForm from './components/SignInForm'
-import SignOut from './components/SignOut'
-import SignUpForm from './components/SignUpForm'
-
-if(document.querySelector('#signin')) {
-  ReactDOM.render(<SignInForm/>, document.querySelector('#signin'))
-} else if(document.querySelector('#signup')) {
-  ReactDOM.render(<SignUpForm/>, document.querySelector('#signup'))
-} else if(document.querySelector('#signout')) {
-  ReactDOM.render(<SignOut/>, document.querySelector('#signout'))
-}

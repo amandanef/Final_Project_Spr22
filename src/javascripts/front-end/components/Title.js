@@ -12,7 +12,12 @@ export function Title() {
                 <img src={addLogo} alt="My Usual Add New Meal Icon" width="150"/>           
             </div>            
             </Route>
-            <Route path="/meals/home">
+            <Route exact path="/meals/home">
+            <div className="logo text-center mt-3">
+                <img src={logo} alt="My Usual Logo" width="150"/>           
+            </div>
+            </Route>
+            <Route exact path="/meals">
             <div className="logo text-center mt-3">
                 <img src={logo} alt="My Usual Logo" width="150"/>           
             </div>
