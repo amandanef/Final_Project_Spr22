@@ -30,7 +30,7 @@ app.use(logger('dev'))
 // Static files
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(express.static(path.join(__dirname, '..', '..', '..', 'public')))
+app.use(express.static(__dirname));
 
 // Sessions
 const session = require('express-session')
